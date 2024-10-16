@@ -5,14 +5,15 @@ MESSAGE(STATUS "编译静态库: ${LIB_NAME}.lib")
 
 FILE(GLOB children RELATIVE ${CURR_DIR} ${CURR_DIR}/*)
 
+AUX_SOURCE_DIRECTORY(${CURR_DIR} "${child}_SRCS")
+MESSAGE(STATUS "添加${CURR_DIR}下的源文件到静态库 ${LIB_NAME}")
+LIST(APPEND ${LIB_NAME}_SRCS ${${child}_SRCS})
+
 FOREACH (child ${children})
     IF (IS_DIRECTORY ${CURR_DIR}/${child})
         AUX_SOURCE_DIRECTORY(${CURR_DIR}/${child} "${child}_SRCS")
-        MESSAGE(STATUS "添加-下的源文件到静态库 ${LIB_NAME}")
+        MESSAGE(STATUS "添加${child}下的源文件到静态库 ${LIB_NAME}")
         LIST(APPEND ${LIB_NAME}_SRCS ${${child}_SRCS})
-    ELSE ()
-        MESSAGE(STATUS "添加源文件: ${child}")
-        LIST(APPEND ${LIB_NAME}_SRCS ${child})
     ENDIF ()
 ENDFOREACH ()
 
