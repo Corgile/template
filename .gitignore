@@ -1,0 +1,12 @@
+﻿/.idea
+/cmake-build
+/*.zip
+/target
+*.txt
+!CMakeLists.txt
+*.sql
+/input
+/RelWithDebInfo
+/Release
+/Debug
+/include/template
